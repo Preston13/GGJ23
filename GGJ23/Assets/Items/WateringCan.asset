@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa60fdcde853767498b143d470705e4d, type: 3}
-  m_Name: ParsnipSeeds
+  m_Name: WateringCan
   m_EditorClassIdentifier: 
-  type: 3
-  icon: {fileID: -1251073559, guid: 1c4a7564e6b8ab84eb74453b51308311, type: 3}
-  manager: {fileID: 7951764270706591019, guid: 8ce68cee2f421154f986e39579dc454e, type: 3}
-  cost: 10
+  type: 5
+  icon: {fileID: 21300000, guid: c4ddcbc4b1fdbb142a4a708455848ed2, type: 3}
+  manager: {fileID: 0}
+  cost: 0

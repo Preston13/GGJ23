@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: PotatoSeeds
   m_EditorClassIdentifier: 
   type: 1
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: -2051520170, guid: 1c4a7564e6b8ab84eb74453b51308311, type: 3}
   manager: {fileID: 7951764270706591019, guid: 8ce68cee2f421154f986e39579dc454e, type: 3}
+  cost: 10

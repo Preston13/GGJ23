@@ -11,11 +11,13 @@ public class SelectableItem : ScriptableObject
         potatoSeeds,
         carrotSeeds,
         parsnipSeeds,
-        sprinkler
+        sprinkler,
+        wateringCan
     }
     public ItemType type = ItemType.potatoSeeds;
     public Sprite icon;
     public FarmManager manager;
+    public int cost;
 
     public void SelectItem()
     {

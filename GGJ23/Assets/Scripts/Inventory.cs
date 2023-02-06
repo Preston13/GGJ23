@@ -5,8 +5,6 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     InventorySlot[] slots;
-    [SerializeField]
-    SelectableItem item;
 
     // Start is called before the first frame update
     void Start()
@@ -17,19 +15,17 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            UpdateInventory();
-        }
+        
     }
 
-    void UpdateInventory()
+    public void UpdateInventory(SelectableItem item)
     {
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i].icon.sprite == null)
             {
                 slots[i].AddItem(item);
+                break;
             }
         }
     }

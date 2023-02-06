@@ -7,6 +7,7 @@ public class InventorySlot : MonoBehaviour
 {
     public Image icon;
 
+    [SerializeField]
     private SelectableItem item;
     private Button slotButton;
     private int itemCount = 0;
@@ -20,11 +21,20 @@ public class InventorySlot : MonoBehaviour
 
     public void AddItem(SelectableItem newItem)
     {
-        item = newItem;
-        icon.sprite = item.icon;
-        icon.enabled = true;
-        slotButton.interactable = true;
-        itemCount++;
+        if (manager.money >= newItem.cost)
+        {
+            Debug.Log("adding " + newItem.type.ToString());
+            item = newItem;
+            icon.sprite = item.icon;
+            icon.enabled = true;
+            slotButton.interactable = true;
+            itemCount++;
+            manager.UpdateMoney(-item.cost);
+        }
+        else
+        {
+            Debug.Log("Not enough money");
+        }
     }
 
     public void RemoveItem()
@@ -41,6 +51,7 @@ public class InventorySlot : MonoBehaviour
 
     public void UseItem()
     {
+        Debug.Log(item.type.ToString());
         if (item != null)
         {
             manager.SelectItem(item.type);
