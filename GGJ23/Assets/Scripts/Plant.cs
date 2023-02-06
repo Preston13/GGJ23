@@ -17,6 +17,7 @@ public class Plant : MonoBehaviour
     public bool isFertilized = false;
     public bool canHarvest = false;
     public int price = 30;
+    public FarmManager manager;
 
     [SerializeField]
     private Sprite currSprite;
@@ -25,6 +26,7 @@ public class Plant : MonoBehaviour
     [SerializeField]
     private float timeTillHarvest;
     private SpriteRenderer sprite;
+    private Light harvestLight;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,7 @@ public class Plant : MonoBehaviour
         currSprite = growCycles[currCycle];
         sprite = GetComponent<SpriteRenderer>();
         sprite.sprite = currSprite;
+        harvestLight = GetComponent<Light>();
     }
 
     // Update is called once per frame
@@ -40,11 +43,14 @@ public class Plant : MonoBehaviour
     {
         if (timeTillHarvest > 0)
         {
-            timeTillHarvest -= Time.deltaTime;
-            int timeChange = (int) (timeToGrow / timeTillHarvest);
+            if (!needsWater)
+            {
+                timeTillHarvest -= Time.deltaTime;
+            }
         }
-        else
+        else if (!canHarvest)
         {
+            harvestLight.enabled = true;
             canHarvest = true;
         }
 
@@ -60,5 +66,11 @@ public class Plant : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Harvest()
+    {
+        manager.UpdateMoney(price);
+        Destroy(this.gameObject);
     }
 }
