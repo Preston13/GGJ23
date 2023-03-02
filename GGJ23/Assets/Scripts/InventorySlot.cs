@@ -6,9 +6,8 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
 {
     public Image icon;
+    public SelectableItem item;
 
-    [SerializeField]
-    private SelectableItem item;
     private Button slotButton;
     private int itemCount = 0;
     private FarmManager manager;
@@ -23,7 +22,6 @@ public class InventorySlot : MonoBehaviour
     {
         if (manager.money >= newItem.cost)
         {
-            Debug.Log("adding " + newItem.type.ToString());
             item = newItem;
             icon.sprite = item.icon;
             icon.enabled = true;
@@ -51,10 +49,9 @@ public class InventorySlot : MonoBehaviour
 
     public void UseItem()
     {
-        Debug.Log(item.type.ToString());
         if (item != null)
         {
-            manager.SelectItem(item.type);
+            manager.SelectItem(this);
         }
     }    
 }

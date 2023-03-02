@@ -8,26 +8,26 @@ public class SelectableItem : ScriptableObject
     public enum ItemType
     {
         none,
-        potatoSeeds,
-        carrotSeeds,
-        parsnipSeeds,
+        potato,
+        carrot,
+        parsnip,
         sprinkler,
         wateringCan
     }
-    public ItemType type = ItemType.potatoSeeds;
+    public ItemType type = ItemType.potato;
     public Sprite icon;
+    public Texture2D cursor;
     public FarmManager manager;
     public int cost;
 
     public void SelectItem()
     {
-        Debug.Log(type.ToString() + " selected");
 
-        manager.SelectItem(type);
+        //manager.SelectItem(type);
     }
 
     public virtual void UseItem()
     {
-        manager.SelectItem(type);
+        //manager.SelectItem(type);
     }
 }

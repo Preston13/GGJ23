@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
-    public enum Type
-    {
-        potato,
-        carrot,
-        parsnips
-    }
-    public Type type = Type.potato;
+    public SelectableItem.ItemType type = SelectableItem.ItemType.potato;
     public float timeToGrow = 30f;
     public Sprite[] growCycles;
     public bool needsWater = true;
@@ -18,6 +12,7 @@ public class Plant : MonoBehaviour
     public bool canHarvest = false;
     public int price = 30;
     public FarmManager manager;
+    public Land land;
 
     [SerializeField]
     private Sprite currSprite;
@@ -31,11 +26,30 @@ public class Plant : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        switch (type)
+        {
+            case SelectableItem.ItemType.potato:
+                timeToGrow = 15f;
+                price = 40;
+                break;
+
+            case SelectableItem.ItemType.carrot:
+                timeToGrow = 10f;
+                break;
+
+            case SelectableItem.ItemType.parsnip:
+                timeToGrow = 20f;
+                price = 50;
+                break;
+
+        }
+
         timeTillHarvest = timeToGrow;
         currSprite = growCycles[currCycle];
         sprite = GetComponent<SpriteRenderer>();
         sprite.sprite = currSprite;
         harvestLight = GetComponent<Light>();
+        manager = FindObjectOfType<FarmManager>();
     }
 
     // Update is called once per frame
@@ -52,6 +66,7 @@ public class Plant : MonoBehaviour
         {
             harvestLight.enabled = true;
             canHarvest = true;
+            GetComponent<SpriteRenderer>().color = Color.green;
         }
 
         for (int x = growCycles.Length; x > 0; x--)
@@ -72,5 +87,6 @@ public class Plant : MonoBehaviour
     {
         manager.UpdateMoney(price);
         Destroy(this.gameObject);
+        land.isVacant = true;
     }
 }

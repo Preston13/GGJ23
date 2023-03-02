@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   icon: {fileID: -661572906, guid: 1c4a7564e6b8ab84eb74453b51308311, type: 3}
+  cursor: {fileID: 2800000, guid: 7d8ad0a4f739598488875382c21faf8b, type: 3}
   manager: {fileID: 7951764270706591019, guid: 8ce68cee2f421154f986e39579dc454e, type: 3}
   cost: 10
